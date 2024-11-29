@@ -36,6 +36,35 @@ class Book extends Model
         return $query->having('reviews_count', '>=', $minReviews);
     }
 
+    function scopePopularLastMonth(Builder $query): Builder|QueryBuilder
+    {
+        return $query->popular(now()->subMonth(), now())
+            ->highestRated(now()->subMonth(), now())
+            ->minReviews(2);
+    }
+
+
+    function scopePopularLast6Months(Builder $query): Builder|QueryBuilder
+    {
+        return $query->popular(now()->subMonth(6), now())
+            ->highestRated(now()->subMonth(6), now())
+            ->minReviews(5);
+    }
+
+    function scopeHighestRatedLastMonth(Builder $query): Builder|QueryBuilder
+    {
+        return $query->highestRated(now()->subMonth(), now())
+            ->popular(now()->subMonth(), now())
+            ->minReviews(2);
+    }
+
+    function scopeHighestRatedLast6Months(Builder $query): Builder|QueryBuilder
+    {
+        return $query->highestRated(now()->subMonth(6), now())
+            ->popular(now()->subMonth(6), now())
+            ->minReviews(5);
+    }
+
     private function dateRangeFilter(Builder $query, $from = null, $to = null)
     {
         if ($from && !$to) {
