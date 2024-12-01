@@ -26,16 +26,17 @@ class BookController extends Controller
         };
 
         $cacheKey = 'books:' . $filter . ':' . $title;
+        $totalBooks = Book::count();
         $books =
             // cache()
             // ->remember(
             // $cacheKey,
             // 3600,
             // fn() => 
-            $books->get();
+            $books->simplePaginate(5);
         // );
 
-        return view('books.index', ['books' => $books]);
+        return view('books.index', ['books' => $books, 'totalBooks' => $totalBooks]);
     }
 
     /**

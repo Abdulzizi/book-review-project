@@ -12,13 +12,7 @@
 
             <div class="flex items-center mt-4 space-x-1">
                 <div class="flex items-center">
-                    <span
-                        class="text-xl font-semibold text-yellow-500">{{ number_format($book->reviews_avg_rating, 1) }}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 ml-1" fill="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                    </svg>
+                    <x-star-rating :rating="number_format($book->reviews_avg_rating, 1)" />
                 </div>
                 <p class="text-sm text-slate-500">
                     {{ $book->reviews_count }} {{ Str::plural('review', $book->reviews_count) }}

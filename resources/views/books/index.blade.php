@@ -44,7 +44,8 @@
                         <div>
                             <div class="flex items-center">
                                 <span
-                                    class="text-s font-semibold text-yellow-500">{{ number_format($book->reviews_avg_rating, 1) }}</span>
+                                    class="text-s font-semibold text-yellow-500">{{ number_format($book->reviews_avg_rating, 1) }}
+                                </span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 ml-1"
                                     fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -67,4 +68,17 @@
             </li>
         @endforelse
     </ul>
+
+    <!-- Pagination -->
+    @if ($books->count())
+        <nav class="mt-4">
+            {{ $books->links() }}
+        </nav>
+
+        <div class="flex items-center justify-center min-h-[50px]">
+            <p class="text-center text-gray-500">
+                Showing {{ $books->firstItem() }} to {{ $books->lastItem() }} of {{ $totalBooks }} books
+            </p>
+        </div>
+    @endif
 @endsection
