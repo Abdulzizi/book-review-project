@@ -24,6 +24,13 @@
             </div>
         </div>
 
+        <div class="mb-4">
+            <a href="{{ route('books.reviews.create', $book) }}" class="btn inline-block text-center">
+                Add New Review
+            </a>
+        </div>
+
+
         <!-- Reviews Section -->
         <div>
             <h2 class="text-2xl font-semibold text-slate-700 mb-4">Reviews</h2>
